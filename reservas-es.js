@@ -270,10 +270,12 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
+        /*
         if (!categoria) {
             messages.push("⚠️ La categoría no es válida.");
             isValid = false;
         }
+        */
 
         if (!isValid) {
             event.preventDefault();
