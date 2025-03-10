@@ -42,13 +42,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // 3. Inicialización de Flatpickr (Calendario)
     // ----------------------------------------------------------------------
 
+    // Crear configuración regional personalizada para el lunes como primer día
+    const customEnglish = {
+        firstDayOfWeek: 1
+    };
+    flatpickr.localize(customEnglish);
+
     let flatpickrInstance = flatpickr(dateInput, {
         enableTime: false,
         dateFormat: "Y-m-d",
         minDate: "today",
         locale: "en", // Configuración regional en inglés
         inline: true,
-        firstDayOfWeek: 1,
+        firstDayOfWeek: 1, // Esto es redundante, pero lo dejo por claridad. La configuración global tiene prioridad
         disable: [
             function (date) {
                 const fechaISO = date.toISOString().split("T")[0];
@@ -58,16 +64,16 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         onChange: function (selectedDates, dateStr, instance) {
             updateAvailableHours();
-              if(selectedDates.length > 0){
+            if (selectedDates.length > 0) {
                 availabilityMessage.style.display = "none"; // clear the alerts
             }
         },
-        onClose: function(selectedDates, dateStr, instance){
-             if(selectedDates.length === 0){
-                    availabilityMessage.innerHTML = `<p style="color: red;">⚠️ Closed day. Please choose another date.</p>`;
-                    availabilityMessage.style.display = "block";
-                     dateInput.value = ""; // clear the date
-             }
+        onClose: function (selectedDates, dateStr, instance) {
+            if (selectedDates.length === 0) {
+                availabilityMessage.innerHTML = `<p style="color: red;">⚠️ Closed day. Please choose another date.</p>`;
+                availabilityMessage.style.display = "block";
+                dateInput.value = ""; // clear the date
+            }
         }
     });
 
@@ -188,9 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // add a listener to flatpickr `Clear` button
     const clearButton = document.querySelector(".flatpickr-clear");
-    if(clearButton){
-        clearButton.addEventListener("click", function(){
-           dateInput.value = "";
+    if (clearButton) {
+        clearButton.addEventListener("click", function () {
+            dateInput.value = "";
             updateAvailableHours();
         });
     }
@@ -276,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
         */
-        
+
         if (!isValid) {
             event.preventDefault();
             event.stopPropagation();
