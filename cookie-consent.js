@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Cambiar el texto del popup si la página está en inglés.
                 const popupParagraph = document.querySelector("#cookie-consent-popup p");
                 if (popupParagraph) {
-                    popupParagraph.innerHTML = 'We use cookies to enhance your browsing experience and analyze our traffic. <a href="https://meson-fuentebuena.webflow.io/en/privacy-policy" target="_blank">Privacy Policy</a>';
+                    popupParagraph.innerHTML = 'We use cookies to enhance your browsing experience and analyze our traffic. <a href="https://www.antiguomesonfuentebuena.com/en/privacy-policy" target="_blank">Privacy Policy</a>';
                 }
 
                 const acceptAllButton = document.getElementById("cookie-accept-all");
